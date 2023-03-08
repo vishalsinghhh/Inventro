@@ -31,7 +31,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const connectDB = require("./db/connect.js");
 
 // routers
-const authRouter = require("./routes/authRoutes");
+const authRouter = require("./routes/User/authRoutes");
 
 // middleware
 const notFoundMiddleware = require("./middleware/not-found.js");
@@ -64,8 +64,7 @@ app.get("/api/v1", (req, res) => {
   res.send("Inventro");
 });
 
-// app.use("/api/v1/auth", authRouter);
-
+app.use("/api/v1/user/auth", authRouter);
 
 
 app.use(notFoundMiddleware); 

@@ -28,10 +28,12 @@ const UserSchema = new mongoose.Schema({
   phone:{
     type:Number,
     unique:true,
-    minlength:10
+    minlength:10,
+    required:true
   },
   password:{
     type:String,
+    required:true,
     validate:{
         validator:validator.isStrongPassword,
         message:'Please provide a strong password'
@@ -39,28 +41,8 @@ const UserSchema = new mongoose.Schema({
   },
   role:{
     type:String,
-    enum:['dhobi', 'user', 'admin'],
+    enum:['master', 'user', 'admin'],
     default:'user'
-  },
-  isVerified:{
-    type:Boolean,
-    default:false
-  },
-  userID:{
-    type:Number,
-    required:true
-  },
-  isCollegeStudent:{
-    type:Boolean,
-    default:false
-  },
-  selectCollege:{
-    type:String,
-    enum:['', 'VIT Chennai']
-  },
-  forgotPasswordFlag:{
-    type:Boolean,
-    default:false
   }
 }, {timestamps:true, toJSON:{virtuals:true}, toObject:{virtuals:true}});
 

@@ -1,6 +1,6 @@
 
 const registerUser = async(req, res)=>{
-  console.log('registerUser');
+ res.send('register')
 }
 
 module.exports = {
