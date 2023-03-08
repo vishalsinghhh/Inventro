@@ -30,6 +30,32 @@ const registerUser = async(req, res)=>{
  res.status(StatusCodes.CREATED).json({user:newUser, token})
 }
 
+const loginUser = async(req, res)=>{
+  const {phone, password} = req.body
+  if(!phone || !password){
+    throw new CustomError.BadRequestError('Please provide all values')
+  }
+  const user = await User.findOne({phone:phone})
+  if(!user){
+    throw new CustomError.BadRequestError('Invalid credentials')
+  }
+  const isPasswordCorrect = await user.comparePassword(password);
+  if (!isPasswordCorrect) {
+    throw new CustomError.UnauthenticatedError("Invalid Credentials");
+  }
+  newUser = {
+    firstname:user.firstname,
+    lastname:user.lastname,
+    email:user.email,
+    phone:user.phone,
+    role:user.role
+  }
+  const token = user.createJWT();
+
+  res.status(StatusCodes.CREATED).json({user:newUser, token})
+}
+
 module.exports = {
-  registerUser
+  registerUser,
+  loginUser
 };
