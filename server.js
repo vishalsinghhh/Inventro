@@ -30,8 +30,11 @@ const mongoSanitize = require("express-mongo-sanitize");
 // database
 const connectDB = require("./db/connect.js");
 
-// routers
-const authRouter = require("./routes/User/authRoutes");
+// routers USER
+const authUserRouter = require("./routes/User/authRoutes");
+
+// routers MASTER
+const authRouterMaster = require("./routes/Master/authRoutes");
 
 // middleware
 const notFoundMiddleware = require("./middleware/not-found.js");
@@ -63,8 +66,10 @@ app.get("/api/v1", (req, res) => {
   // console.log(req.signedCookies);
   res.send("Inventro");
 });
-
-app.use("/api/v1/user/auth", authRouter);
+// USER
+app.use("/api/v1/user/auth", authUserRouter);
+// MASTER
+app.use("/api/v1/master/auth", authRouterMaster);
 
 
 app.use(notFoundMiddleware); 
