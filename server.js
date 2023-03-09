@@ -35,6 +35,7 @@ const authUserRouter = require("./routes/User/authRoutes");
 
 // routers MASTER
 const authRouterMaster = require("./routes/Master/authRoutes");
+const stockRouterMaster = require("./routes/Master/stockRoutes");
 
 // middleware
 const notFoundMiddleware = require("./middleware/not-found.js");
@@ -70,6 +71,7 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/user/auth", authUserRouter);
 // MASTER
 app.use("/api/v1/master/auth", authRouterMaster);
+app.use("/api/v1/master/stock", stockRouterMaster);
 
 
 app.use(notFoundMiddleware); 
