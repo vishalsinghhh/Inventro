@@ -32,10 +32,12 @@ const AdminSchema = new mongoose.Schema(
     companyName: {
       type: String,
       required: true,
+      unique:true
     },
     panCardNo:{
       type:String,
-      required:true
+      required:true,
+      unique:true
     }
   },
   { timestamps: true }
