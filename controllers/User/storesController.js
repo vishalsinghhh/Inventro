@@ -3,7 +3,7 @@ const { StatusCodes } = require("http-status-codes");
 const ServiceLocation = require('../../models/Admin/ServiceLocations')
 
 const getAllStores = async(req, res)=>{
-    const {pincode} = req.body
+    const {id:pincode} = req.params
     if(!pincode){
         throw new CustomError.BadRequestError('Please provide pincode')
     }

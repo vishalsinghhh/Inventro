@@ -32,6 +32,7 @@ const connectDB = require("./db/connect.js");
 
 // routers USER
 const authUserRouter = require("./routes/User/authRoutes");
+const storesUserRouter = require('./routes/User/storesRoutes')
 
 // routers MASTER
 const authRouterMaster = require("./routes/Master/authRoutes");
@@ -70,6 +71,7 @@ app.get("/api/v1", (req, res) => {
 });
 // USER
 app.use("/api/v1/user/auth", authUserRouter);
+app.use("/api/v1/user/stores", storesUserRouter);
 // MASTER
 app.use("/api/v1/master/auth", authRouterMaster);
 app.use("/api/v1/master/stock", stockRouterMaster);
