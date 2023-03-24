@@ -4,8 +4,9 @@ const {
   authenticateUser,
 } = require("../../middleware/authentication");
 
-const {addStockToInventory} = require('../../controllers/Master/manageStock')
+const {registerAdmin, addServiceLocations} = require('../../controllers/Master/manageAdminController')
 
-router.route("/addStock").post(authenticateUser,addStockToInventory )
+router.route("/registerAdmin").post(authenticateUser,registerAdmin )
+router.route("/addServiceLocation/:id").post(authenticateUser,addServiceLocations )
 
 module.exports = router;

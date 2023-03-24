@@ -10,8 +10,8 @@ const registerAdmin = async (req, res) => {
     throw new CustomError.BadRequestError("Please provide all values!");
   }
 
-  const isAdminExists = await Master.findOne({ phone: phone });
-  const isPanExists = await Master.findOne({ panCardNo: panCardNo });
+  const isAdminExists = await Admin.findOne({ phone: phone });
+  const isPanExists = await Admin.findOne({ panCardNo: panCardNo });
   if (isAdminExists || isPanExists) {
     throw new CustomError.BadRequestError("Admin already exists!");
   }
@@ -25,7 +25,7 @@ const registerAdmin = async (req, res) => {
     companyName:admin.companyName,
     panCardNo:admin.panCardNo
   };
-  req.status(StatusCodes.CREATED).json({msg:'New Admin Created!',newUser})
+  res.status(StatusCodes.CREATED).json({msg:'New Admin Created!',newUser})
 };
 
 const addServiceLocations = async (req, res) => {
@@ -35,11 +35,11 @@ const addServiceLocations = async (req, res) => {
     throw new CustomError.BadRequestError('Please provide all values!')
   }
   const isShopExists = await ServiceLocation.findOne({shopNum})
-  if(!isShopExists){
+  if(isShopExists){
     throw new CustomError.BadRequestError('Shop already exists!')
   }
 
-  const newShop = await ServiceLocation.create({admin:adminId, master:req.user.id, address, pincode, shopNum})
+  const newShop = await ServiceLocation.create({admin:adminId, master:req.user.userId, address, pincode, shopNum})
 
   res.status(StatusCodes.CREATED).json({newShop})
 };

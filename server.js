@@ -73,6 +73,7 @@ app.use("/api/v1/user/auth", authUserRouter);
 // MASTER
 app.use("/api/v1/master/auth", authRouterMaster);
 app.use("/api/v1/master/stock", stockRouterMaster);
+app.use("/api/v1/master/manageAdmin", manageAdminRouteMaster);
 
 
 app.use(notFoundMiddleware); 
