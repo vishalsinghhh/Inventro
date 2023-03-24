@@ -18,6 +18,11 @@ const ServiceLocationSchema = new mongoose.Schema({
     address:{
         type:String,
         required:true
+    },
+    shopNum:{
+        type:String,
+        required:true,
+        unique:true
     }
 })
 

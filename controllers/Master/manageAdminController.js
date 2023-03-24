@@ -1,6 +1,7 @@
 const CustomError = require("../../errors");
 const { StatusCodes } = require("http-status-codes");
 const Admin = require('../../models/Admin/Admin')
+const ServiceLocation = require('../../models/Admin/ServiceLocations')
 
 const registerAdmin = async (req, res) => {
   const { phone, password, companyName, panCardNo } = req.body;
@@ -27,7 +28,21 @@ const registerAdmin = async (req, res) => {
   req.status(StatusCodes.CREATED).json({msg:'New Admin Created!',newUser})
 };
 
-const addServiceLocations = async (req, res) => {};
+const addServiceLocations = async (req, res) => {
+  const {id : adminId}= req.params
+  const {address, pincode, shopNum} = req.body
+  if(!adminId || !address || !pincode || !shopNum){
+    throw new CustomError.BadRequestError('Please provide all values!')
+  }
+  const isShopExists = await ServiceLocation.findOne({shopNum})
+  if(!isShopExists){
+    throw new CustomError.BadRequestError('Shop already exists!')
+  }
+
+  const newShop = await ServiceLocation.create({admin:adminId, master:req.user.id, address, pincode, shopNum})
+
+  res.status(StatusCodes.CREATED).json({newShop})
+};
 
 const addStockToAdmin = async (req, res) => {};
 
@@ -35,4 +50,5 @@ const getAdminStock = async (req, res) => {};
 
 module.exports = {
   registerAdmin,
+  addServiceLocations
 };

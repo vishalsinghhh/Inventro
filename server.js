@@ -36,6 +36,7 @@ const authUserRouter = require("./routes/User/authRoutes");
 // routers MASTER
 const authRouterMaster = require("./routes/Master/authRoutes");
 const stockRouterMaster = require("./routes/Master/stockRoutes");
+const manageAdminRouteMaster = require('./routes/Master/manageAdminRoutes')
 
 // middleware
 const notFoundMiddleware = require("./middleware/not-found.js");
