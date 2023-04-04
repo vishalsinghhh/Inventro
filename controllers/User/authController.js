@@ -1,4 +1,4 @@
-const User = require('../../models/User/User')
+const Users = require('../../models/User/User')
 const CustomError = require("../../errors");
 const { StatusCodes } = require("http-status-codes");
 
@@ -7,11 +7,11 @@ const registerUser = async(req, res)=>{
   if(!name || !phone || !password){
     throw new CustomError.BadRequestError('Please provide all values!')
   }
-  const isUserExists = await User.findOne({phone:phone})
+  const isUserExists = await Users.findOne({phone:phone})
   if(isUserExists){
     throw new CustomError.BadRequestError('User already exists!')
   }
-  const user = await User.create({
+  const user = await Users.create({
     name,
     phone,
     password
@@ -31,7 +31,7 @@ const loginUser = async(req, res)=>{
   if(!phone || !password){
     throw new CustomError.BadRequestError('Please provide all values')
   }
-  const user = await User.findOne({phone:phone})
+  const user = await Users.findOne({phone:phone})
   if(!user){
     throw new CustomError.BadRequestError('Invalid credentials')
   }
