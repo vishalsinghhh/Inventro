@@ -12,14 +12,6 @@ const MasterSubSubStockSchema = new mongoose.Schema(
         enum:["Apple", "Pomegranate", "Black Grapes", "Tomato", "Onion"],
         required:true,
         unique:true
-    },
-    pricing:{
-        type:Number,
-        required:true
-    },
-    stockLeft:{
-        type:Number,
-        required:true
     }
   },
   { timestamps: true }

@@ -1,5 +1,6 @@
 const MasterStock = require("../../models/Master/MasterStock");
 const MasterSubcategory = require("../../models/Master/MasterSubcategory");
+const MasterSubSubCategory = require("../../models/Master/MasterSubSubcategory")
 const { StatusCodes } = require("http-status-codes");
 const CustomError = require("../../errors");
 
@@ -43,6 +44,26 @@ const addSubCategory = async (req, res) => {
 
   res.status(StatusCodes.CREATED).json({newCategory})
 } 
+const addSubSubCategory = async (req, res) => {
+  const { id: subcategoryId } = req.params;
+  const { subSubcategory } = req.body;
+  if(!subSubcategory){
+    throw new CustomError.BadRequestError('Please provide subSubcategory')
+  }
+  const isSubSubCategoryExists = await MasterSubSubCategory.findOne({
+    subSubcategory: subSubcategory,
+  })
+  if(isSubSubCategoryExists){
+    throw new CustomError.BadRequestError("This category already exists")
+  }
+
+  const newCategory = await MasterSubSubCategory.create({
+    subcategory:subcategoryId,
+    subSubcategory
+  });
+
+  res.status(StatusCodes.CREATED).json({newCategory})
+} 
 
 const addStockToInventory = async (req, res) => {};
 
@@ -58,4 +79,5 @@ module.exports = {
   getStock,
   addCategory,
   addSubCategory,
+  addSubSubCategory
 };

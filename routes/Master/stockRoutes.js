@@ -4,11 +4,12 @@ const {
   authenticateUser,
 } = require("../../middleware/authentication");
 
-const {addStockToInventory, getStock, addCategory, addSubCategory} = require('../../controllers/Master/manageStock')
+const {addStockToInventory, getStock, addCategory, addSubCategory, addSubSubCategory} = require('../../controllers/Master/manageStock')
 
 router.route("/addStock").post(authenticateUser,addStockToInventory )
 router.route("/addCategory").post(authenticateUser,addCategory )
 router.route("/addSubcategory/:id").post(authenticateUser,addSubCategory )
+router.route("/addSubSubCategory/:id").post(authenticateUser,addSubSubCategory )
 router.route("/:id").get(authenticateUser,getStock )
 
 module.exports = router;
