@@ -9,7 +9,7 @@ const getData = async (req, res) => {
     "het@gmail.com",
     "hetislegend"
   );
-  set(ref(db, "UsersData/HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/Relay/value"), {
+  set(ref(db, "UsersData/HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/Relay"), {
     value: 1,
   });
 
@@ -21,7 +21,7 @@ const getData1 = async (req, res) => {
     "het@gmail.com",
     "hetislegend"
   );
-  set(ref(db, "UsersData/HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/Relay/value"), {
+  set(ref(db, "UsersData/HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/Relay"), {
     value: 0,
   });
 
