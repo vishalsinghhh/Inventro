@@ -9,7 +9,7 @@ const getData = async (req, res) => {
     "het@gmail.com",
     "hetislegend"
   );
-  set(ref(db, "UsersData/HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/Relay"), {
+  set(ref(db, "UsersData/HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/Relay/value"), {
     value: 1,
   });
 
@@ -21,7 +21,7 @@ const getData1 = async (req, res) => {
     "het@gmail.com",
     "hetislegend"
   );
-  set(ref(db, "UsersData/HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/Relay"), {
+  set(ref(db, "UsersData/HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/Relay/value"), {
     value: 0,
   });
 
@@ -36,7 +36,7 @@ const getData2 = async (req, res) => {
       );
   const hello = ref(
     db,
-    "UsersData/" + "HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/" + "readings/humidity/"
+    "UsersData/" + "HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/" + "readingsreading/humidity/"
   );
   onValue(hello, (snapshot) => {
     const data = snapshot.val();
@@ -56,7 +56,7 @@ const getData3 = async (req, res) => {
       );
   const hello = ref(
     db,
-    "UsersData/" + "HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/" + "readings/temperature/"
+    "/UsersData/HHeFtnU2LTXWVTBsKqgjwHbJ1pz2/" + "readingsreading/temperature/"
   );
   onValue(hello, (snapshot) => {
     const data = snapshot.val();
